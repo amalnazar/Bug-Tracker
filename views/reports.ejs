@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+   <!----NavBar---->
+  
+   <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Bug Tracking System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/addbug">Add New</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/reports">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/myaccounts">My Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Log out</a>
+          </li>
+
+        </ul>
+        <form class="d-flex" method="POST" action="/reports">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+          <button class="btn btn-outline-dark" type="submit">Search</button>
+      </form>
+      </div>
+    </div>
+  </nav>
+ 
+  <!----Title---->
+  
+  <div class="card text-center">
+
+    <div class="card-body">
+      <h5 class="card-title">Detailed Bug Report</h5>
+      
+      
+    </div>
+    <div class="card-footer text-muted">
+      
+    </div>
+  </div>
+    <table class="table table-secondary table-hover">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">ID</th>
+            <th scope="col">Bug Title</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Severity</th>
+            <th scope="col">Status</th>
+            <th scope="col">Issue Open Date</th>
+            <th scope="col">Issue Close Date</th>
+            <th scope="col">Issue Cleared By</th>
+            <th scope="col">Action</th>
+
+
+
+
+
+          </tr>
+        </thead>
+        <tbody>
+            <% bugs.forEach((bug)=> {%>
+          <tr>
+             
+            <td><%= bug.id %></td>
+            <td><%= bug.bugtitle %></td>
+            <td><%= bug.username %></td>
+            <td><%= bug.severity %></td>
+            <td><%= bug.status %></td>
+            <td><%= bug.opendate %></td>
+            <td><%= bug.issue_close_date %></td>
+            <td><%= bug.issue_closed_by %></td>
+            <td>
+              
+                <a href="/update/<%= bug.id %>" class="btn btn-warning">Update</a>
+              
+                <a href="/delete/<%= bug.id %>" class="btn btn-danger">Delete</a>
+
+            </td>
+
+
+             
+          </tr>
+          <%})%>
+         
+        </tbody>
+      </table>
+    
+    
+</body>
+</html>
